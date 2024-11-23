@@ -13,6 +13,7 @@ This PID controller that takes in input a SET temperature ( desired temperature)
 # Environment configuration
 
 ## Fedora 41 server with 
+[here you can find fedora configuration instruction](fedora_configuration.md)
 
 The server has installed two GPU, Nvidia Quadro P4000 8Gb and Nvidia quadro P6000 24Gb.
 Since we dont need for this training so huge amount of memory we can use without problems the P4000 or any other Nvidia GPU.
