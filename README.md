@@ -1,6 +1,7 @@
 # LSTM HARDWARE PID
 Hardware controlled PID using LSTM neural network
 
+
 ### What we need : we want to build a PID hardware controller, to control the burner of a Roasting machine.
 This PID controller that takes in input a SET temperature ( desired temperature), and predict the Burner Value of . 
 
