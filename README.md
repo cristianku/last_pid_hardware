@@ -28,7 +28,8 @@ wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 
 ## REFERENCES USED
 ### Multi-Step LSTM Time Series Forecasting
-[Python notebook](notebook/ventas-lstm-multistep.ipynb) 
+[Python notebook](notebook/ventas-lstm-multistep.ipynb) <br>
+[training data](notebook/lstm_sales_year.csv.xls) <br>
 
     https://www.youtube.com/watch?v=kR4TzKZBaNs&t=91s
     https://www.kaggle.com/datasets/rupakroy/lstmmultistep
