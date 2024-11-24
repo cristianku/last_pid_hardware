@@ -1,19 +1,30 @@
 # LSTM HARDWARE PID
 Hardware controlled PID using LSTM neural network
 
-# UBUNTU 24.04 configurations for Deep learning
+# FEDORA 40 configurations for Deep learning
 These are general configurations for Fedora (41) that can be applied to any Deep Learning project
 
-### UBUNTU is installed on a Raid 1 SSD ( two SSD, 1 in mirroring)
-[Here you can find instructions how to install in RAID Ubuntu](https://www.youtube.com/watch?v=rJzHpc1kQW4)
+### FEDORA is installed on a Raid 1 SSD ( two SSD, 1 in mirroring)
 
 #### CUDA TOOLKIT INSTALLATION 
 ```bash
-wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/cuda-keyring_1.1-1_all.deb
-sudo dpkg -i cuda-keyring_1.1-1_all.deb
-sudo apt-get update
-sudo apt-get -y install cuda-toolkit-12-6
+sudo dnf config-manager --add-repo https://developer.download.nvidia.com/compute/cuda/repos/fedora40/x86_64/cuda-fedora40.repo
+```
+verify the repo:
+```commandline
+cat /etc/yum.repos.d/cuda-fedora40.repo
+
+```
+Continue the installation
+```bash
+sudo dnf clean all
+sudo dnf install nvidia-driver-cuda
+sudo dnf install nvidia-driver-cuda-libs
+sudo dnf install libnvcomp4-devel-cuda-12-0
+sudo dnf install libnvcomp4-cuda-12-0
+
 ````
+
 #### NVIDIA DRIVER INSTALLER
 To install the open kernel module flavor:
 ```commandline
