@@ -1,40 +1,37 @@
-# LSTM HARDWARE PID
+# LSTM HARDWARE PID - LINUX CONF FOR DEEP LEARNING
 Hardware controlled PID using LSTM neural network
 
-# FEDORA 40 configurations for Deep learning
+# FEDORA 39
 These are general configurations for Fedora (41) that can be applied to any Deep Learning project
 
 ### FEDORA is installed on a Raid 1 SSD ( two SSD, 1 in mirroring)
 
-#### CUDA TOOLKIT INSTALLATION 
+### NVIDIA INSTALLATION
+
+Add Nvidia Repository
 ```bash
-sudo dnf config-manager --add-repo https://developer.download.nvidia.com/compute/cuda/repos/fedora40/x86_64/cuda-fedora40.repo
+sudo dnf config-manager --add-repo https://developer.download.nvidia.com/compute/cuda/repos/fedora39/x86_64/cuda-fedora39.repo
 ```
-verify the repo:
+In Fedora 41:
 ```commandline
-cat /etc/yum.repos.d/cuda-fedora40.repo
+sudo dnf5 config-manager addrepo --from-repofile=https://developer.download.nvidia.com/compute/cuda/repos/fedora39/x86_64/cuda-fedora39.repo
+```
+verify :
+```commandline
+cat /etc/yum.repos.d/cuda-fedora39.repo
 
 ```
 Continue the installation
 ```bash
+sudo dnf update
 sudo dnf clean all
-sudo dnf install nvidia-driver-cuda
-sudo dnf install nvidia-driver-cuda-libs
-sudo dnf install libnvcomp4-devel-cuda-12-0
-sudo dnf install libnvcomp4-cuda-12-0
+sudo dnf -y module install nvidia-driver:latest-dkms
 
+sudo dnf -y install cuda
+sudo dnf -y install cuda-toolkit
 ````
 
-#### NVIDIA DRIVER INSTALLER
-To install the open kernel module flavor:
-```commandline
-sudo apt-get install -y nvidia-open
-```
-To install the legacy kernel module flavor:
-```commandline
-sudo apt-get install -y cuda-drivers
-```
-#### mounting NVME
+### PREPARING NVME DRIVES
 
 ##### Creating a partition
 ```bash
@@ -62,7 +59,7 @@ cristianku@serverone-deep:~$ sudo blkid /dev/nvme1n1p1
 /dev/nvme1n1p1: PARTLABEL="primary" PARTUUID="ca63c21a-f5ff-46a0-a2e9-e961a89ec0a2"
 ```
 
-##### Mounting NVME
+#### Mounting NVME
 ```bash
 sudo mkdir -p /mnt/nvme0
 sudo mkdir -p /mnt/nvme1
