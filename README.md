@@ -60,9 +60,71 @@ echo "   source ~/.bashrc" >> ~/.profile
 echo "fi" >> ~/.profile
 ```
 
+initialize conda ( only once ) 
+```
+conda init
+```
+
+activate the new environment
+```
+conda activate deeplearning
+```
+
 ### PYTORCH
 
 ```commandline
+conda activate deeplearning
+
+conda install -c pytorch pytorch 
+
+conda deactivate deeplearning
+```
+
+### JUPYTER NOTEBOOK
+
+#### Installation
+```commandline
+conda install -c anaconda jupyter
+```
+
+#### then you can open it with
+```commandline
+jupyter notebook
+```
+if you want Jupyter notebook to be accessible from the network instead of the local pc ( in this case its a Linux server so it doesnt have the desktop)
+
+```commandline
+jupyter notebook --ip=0.0.0.0 --no-browser
+```
+Lets create the configuration for Jupyter
+```commandline
+jupyter notebook --generate-config
+```
+set a password:
+```commandline
+jupyter notebook password
+```
+
+edit the configuration file:
+```commandline
+vi ~/.jupyter/jupyter_notebook_config.py
+```
+uncomment and set the following:
+```commandline
+c.NotebookApp.ip = '0.0.0.0'
+c.NotebookApp.open_browser = False
+c.NotebookApp.port = 8888
+```
+
+restart the notebook:
+```commandline
+jupyter notebook
+```
+
+#### it maybe necessary to open the port in the firewall (Fedora ):
+```commandline
+sudo firewall-cmd --zone=FedoraServer --add-port=8888/tcp --permanent
+sudo firewall-cmd --reload
 
 ```
 
