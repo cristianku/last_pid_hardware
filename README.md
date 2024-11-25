@@ -19,12 +19,52 @@ This PID controller that takes in input a SET temperature ( desired temperature)
 The server has installed two GPU, Nvidia Quadro P4000 8Gb and Nvidia quadro P6000 24Gb.
 Since we dont need for this training so huge amount of memory we can use without problems the P4000 or any other Nvidia GPU.
 
-### CONDA
+### ANACONDA
+
+### [Click here for a useful guide to conda commands](anaconda.pdf)
+
+Check here the last conda download https://www.anaconda.com/download/success
+
+#### anaconda installation
 ```bash
-wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+wget https://repo.anaconda.com/archive/Anaconda3-2024.10-1-Linux-x86_64.sh
+chmod +x ./Anaconda3-2024.10-1-Linux-x86_64.sh
+./Anaconda3-2024.10-1-Linux-x86_64.sh
+```
+
+#### anaconda environment
+```bash
+conda create --name deeplearning python=3.9
+```
+if you get this error:
+```commandline
+-bash: conda: command not found
+```
+
+then Activate Anaconda:
+```commandline
+source ~/anaconda3/bin/activate
+```
+
+Add Anaconda to PATH
+```commandline
+touch ~/.bashrc
+echo "export PATH=~/anaconda3/bin:\$PATH" >> ~/.bashrc
+```
+if the conda is still not working probably ~/.profile is missing:
+```commandline
+touch ~/.profile
+
+echo "if [ -f ~/.bashrc ]; then" >> ~/.profile
+echo "   source ~/.bashrc" >> ~/.profile
+echo "fi" >> ~/.profile
 ```
 
 ### PYTORCH
+
+```commandline
+
+```
 
 ## REFERENCES USED
 ### Multi-Step LSTM Time Series Forecasting

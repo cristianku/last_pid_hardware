@@ -35,6 +35,8 @@ sudo dnf -y install cuda-toolkit
 
 ##### Creating a partition
 ```bash
+sudo mkfs.ext4 /dev/nvme0n1p1
+
 sudo parted /dev/nvme0n1 --script mklabel gpt
 sudo parted /dev/nvme0n1 --script mkpart primary ext4 0% 100%
 sudo mkfs.ext4 /dev/nvme0n1p1
@@ -48,6 +50,36 @@ nvme0n1     259:0    0   1.8T  0 disk
 └─nvme0n1p1 259:2    0   1.8T  0 part  
 nvme1n1     259:1    0 931.5G  0 disk  
 └─nvme1n1p1 259:4    0 931.5G  0 part 
+```
+
+##### Moving home to nvme
+```commandline
+sudo mkdir /mnt/new_home
+sudo mount /dev/nvme0n1p1 /mnt/new_home
+sudo mv /home /mnt/home_new
+sudo mkdir cristianku
+
+sudo cp /etc/fstab /etc/fstab.bak
+```
+add this to /etc/fstab:
+```commandline
+/dev/nvme0n1p1 /home ext4 defaults 0 2
+```
+check if correctly mounted:
+```commandline
+cristianku@localhost:~$ df -h | grep /home
+/dev/nvme0n1p1  1.8T  2.1M  1.7T   1% /home
+```
+change the ownership:
+```commandline
+sudo chown -R cristianku:cristianku /home/cristianku
+```
+lets check the available space and the mounted nvme:
+```commandline
+cristianku@localhost:~$ df -h /home/cristianku
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/nvme0n1p1  1.8T  2.1M  1.7T   1% /home
+cristianku@localhost:~$ 
 ```
 
 ##### Getting the BLKID
