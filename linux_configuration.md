@@ -14,7 +14,7 @@ These are general configurations for Fedora (41) that can be applied to any Deep
 
 Add Nvidia Repository
 ```bash
-sudo dnf config-manager --add-repo https://developer.download.nvidia.com/compute/cuda/repos/fedora39/x86_64/cuda-fedora39.repo
+sudo dnf config-manager --add-repo https://developer.download.nvidia.com/compute/cuda/repos/fedora40/x86_64/cuda-fedora40.repo
 ```
 verify :
 ```commandline
