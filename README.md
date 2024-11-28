@@ -16,6 +16,10 @@ This PID controller that takes in input a SET temperature ( desired temperature)
 ## Linux server server 
 [here you can find linux server base configuration instructions](linux_configuration.md)
 
+##### If you have a Corsair liquid cooler look here: [Corsair liquid cooler configuration](corsair_cooler.md)
+
+##### [Maybe you are interested in configuring backups on a Truenas Server via NFS](linux_backups_truenas_nfs.md)
+
 The server has installed two GPU, Nvidia Quadro P4000 8Gb and Nvidia quadro P6000 24Gb.
 Since we dont need for this training so huge amount of memory we can use without problems the P4000 or any other Nvidia GPU.
 
@@ -36,6 +40,15 @@ chmod +x ./Anaconda3-2024.10-1-Linux-x86_64.sh
 ```bash
 conda create --name deeplearning python=3.9
 ```
+
+If you'd prefer that conda's base environment not be activated on startup,
+   run the following command when conda is activated:
+```yaml
+conda config --set auto_activate_base false
+
+```
+
+
 if you get this error:
 ```commandline
 -bash: conda: command not found
@@ -69,6 +82,59 @@ activate the new environment
 ```
 conda activate deeplearning
 ```
+### GIT
+
+install git
+```yaml
+sudo dnf install git
+```
+generate ssh key, replacing the email used in the example with your GitHub email address.
+```yaml
+ssh-keygen -t ed25519 -C "your_email@example.com"
+```
+create the config file
+```yaml
+touch ~/.ssh/config
+```
+
+edit this file and past the following
+```yaml
+Host github.com
+  AddKeysToAgent yes
+  IdentityFile ~/.ssh/id_ed25519
+```
+
+Add the SSH public key to your account on GitHub. 
+
+```yaml
+cat ~/.ssh/id_ed25519.pub
+```
+
+For more information, 
+see "[Adding a new SSH key to your GitHub account.](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)"
+
+### Important Python libraries
+
+#### Installing numpy
+```yaml
+conda install -c anaconda numpy
+```
+
+#### Installing matplotlib
+```yaml
+conda install -c anaconda matplotlib
+```
+
+#### Installing Pandas
+```yaml
+conda install -c anaconda pandas
+```
+
+#### Installing Scipy
+```yaml
+conda install -c anaconda scipy
+```
+
 
 ### PYTORCH
 
@@ -76,8 +142,6 @@ conda activate deeplearning
 conda activate deeplearning
 
 conda install -c pytorch pytorch 
-
-conda deactivate deeplearning
 ```
 
 ### JUPYTER NOTEBOOK
